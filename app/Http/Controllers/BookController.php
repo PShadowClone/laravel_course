@@ -29,8 +29,13 @@ class BookController extends Controller
     public function store(Request $request)
     {
         $request->validate($this->rules(), $this->messages());
+        $image = $request->file('book_image');
+        $imageName = time() . '.' . $image->getClientOriginalExtension();
+        $direction = public_path('image/');
+        $image->move($direction, $imageName);
+//        $request['image'] = "image/" . $imageName;
         $book = new Book();
-        $request['publish_date'] = Carbon::now();
+        $book->image = "image/" . $imageName;
         $book->fill($request->all());
         $book->save();
         return redirect()->back()->with('success', 'book has been saved successfully');
@@ -52,7 +57,8 @@ class BookController extends Controller
             'writer' => 'required',
             'publisher' => 'required',
             'isbn' => 'required|unique:books,isbn',
-            'publish_date' => 'required'
+            'publish_date' => 'required',
+            'book_image' => 'required|mimes:jpeg,bmp,png,jpg',
         ];
     }
 
@@ -73,6 +79,8 @@ class BookController extends Controller
             'publish_date.required' => 'publish date is required',
             'isbn.required' => 'isbn is required',
             'isbn.unique' => 'isbn should be unique',
+            'book_image.required' => 'book image is required',
+            'book_image.mimes' => 'invalid image',
         ];
     }
 }

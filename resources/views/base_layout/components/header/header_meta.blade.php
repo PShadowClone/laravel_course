@@ -30,6 +30,9 @@
       id="style_color"/>
 <link href="{{asset('/control/assets/layouts/layout/css/custom.min.css')}}" rel="stylesheet" type="text/css"/>
 <!-- END THEME LAYOUT STYLES -->
+<link href="{{asset('/control/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css')}}" rel="stylesheet"
+      type="text/css"/>
+
 <link rel="shortcut icon" href="favicon.ico"/>
 
 <style>
@@ -37,7 +40,8 @@
         color: red;
         margin-top: 10px !important;
     }
-    .required{
+
+    .required {
         color: red;
     }
 
