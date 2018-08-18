@@ -8,8 +8,13 @@
     <title>Document</title>
 </head>
 <body>
-<header>
+<h1>Welcome Mr.
 
-</header>
+    @if(is_null($name))
+        Laravel
+    @else
+        {{$name}}
+    @endif
+</h1>
 </body>
 </html>

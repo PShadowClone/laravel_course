@@ -14,7 +14,7 @@
       rel="stylesheet" type="text/css"/>
 <link href="{{asset('/control/assets/global/plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet"
       type="text/css"/>
-<link href="{{asset('/control/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css')}}"
+<link href="{{asset('control/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css')}}"
       rel="stylesheet"
       type="text/css"/>
 <!-- END GLOBAL MANDATORY STYLES -->
@@ -32,18 +32,9 @@
 <!-- END THEME LAYOUT STYLES -->
 <link href="{{asset('/control/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css')}}" rel="stylesheet"
       type="text/css"/>
-
 <link rel="shortcut icon" href="favicon.ico"/>
-
 <style>
-    .error {
-        color: red;
-        margin-top: 10px !important;
-    }
-
-    .required {
+    .required, .error {
         color: red;
     }
-
-
 </style>

@@ -12,5 +12,9 @@
 */
 
 
-Route::get('book/create', 'BookController@create');
-Route::post('book/create', ['as' => 'book.create', 'uses' => 'BookController@store']);
+Route::group(['prefix' => 'book'], function () {
+    Route::get('create', 'BookController@create');
+    Route::post('create', ['as' => 'book.store']);
+    Route::get('all', ['as' => 'book.index', 'uses' => 'BookController@index']);
+    Route::get('destroy/{id}', ['as' => 'book.destroy', 'uses' => 'BookController@destroy']);
+});
