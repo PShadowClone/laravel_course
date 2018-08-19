@@ -22,5 +22,30 @@
 <script src="{{asset('/control/assets/layouts/global/scripts/quick-sidebar.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('/control/assets/layouts/global/scripts/quick-nav.min.js')}}" type="text/javascript"></script>
 <!-- END THEME LAYOUT SCRIPTS -->
+
+<!-- BEGIN PAGE LEVEL PLUGINS -->
+<script src="{{asset('/control/assets/global/plugins/moment.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('/control/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js')}}"
+        type="text/javascript"></script>
+<script src="{{asset('/control/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"
+        type="text/javascript"></script>
+<script src="{{asset('/control/assets/global/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js')}}"
+        type="text/javascript"></script>
+<script src="{{asset('/control/assets/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js')}}"
+        type="text/javascript"></script>
+<script src="{{asset('/control/assets/global/plugins/clockface/js/clockface.js')}}" type="text/javascript"></script>
+<!-- END PAGE LEVEL PLUGINS -->
+
+<script src="{{asset('/control/assets/pages/scripts/components-date-time-pickers.min.js')}}"
+        type="text/javascript"></script>
 <script src="{{asset('/control/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js')}}"
         type="text/javascript"></script>
+<script src="{{asset('/control/assets/global/plugins/bootstrap-sweetalert/sweetalert.min.js')}}"
+        type="text/javascript"></script>
+<script src="{{asset('/control/assets/pages/scripts/ui-sweetalert.min.js')}}"
+        type="text/javascript"></script>
+
+<script>
+    $("#publish_date").datepicker({dateFormat: 'yy-mm-dd'});
+
+</script>

@@ -3,27 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Book;
-use App\User;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
+const BOOK_PAGINATION = 10;
 class BookController extends Controller
 {
 
 
-    /**
-     *
-     * show all books
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
     public function index()
     {
-        $books = Book::all();
-        $data['books'] = $books;
-        return view('book.index', $data);
+        $books = Book::paginate(BOOK_PAGINATION);
+        return view('book.index', compact('books'));
     }
 
     /**
@@ -37,6 +32,13 @@ class BookController extends Controller
         return view('book.create');
     }
 
+
+    /**
+     *
+     * store request
+     *
+     * @param Request $request
+     */
     public function store(Request $request)
     {
         $request->validate($this->rules(), $this->messages());
@@ -44,60 +46,117 @@ class BookController extends Controller
         $imageName = time() . '.' . $image->getClientOriginalExtension();
         $direction = public_path('image/');
         $image->move($direction, $imageName);
-        $request['image'] = 'image/' . $imageName;
-        $request['publish_time'] = Carbon::now();
         $book = new Book();
+        $book->image = "image/" . $imageName;
         $book->fill($request->all());
         $book->save();
+        return redirect()->back()->with('success', 'book has been saved successfully');
 
-        $result = $book->save();
-        if ($result === TRUE) {
-            return redirect()->back()->with('success', 'book has been saved successfully');
-        }
-        return redirect()->back()->with('error', 'Something went wrong');
     }
 
-    public function destroy($id)
+
+    public function destroy($id = null)
     {
 //        $book = Book::find($id);
-//        $book = Book::where('id', '=', $id)->first();
-//        $book = Book::where(['id' => $id])->first();
+//        $book = Book::whereRaw(['id' => $id])->first();
         try {
             $book = Book::findOrFail($id);
             $book->delete();
-            return redirect()->back()->with('success', 'book has been deleted successfully');
+            return redirect()->back()->with('success', 'Book  has been deleted successfully');
         } catch (\Exception $exception) {
-            return redirect()->back()->with('error', 'book is not found');
+            return redirect()->back()->with('error', 'Book is not found');
         }
-//        if (!$book)
-//            return redirect()->back()->with('error', 'book is not found');
     }
 
-    private function rules()
+    /**
+     *
+     * show edit form
+     *
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     */
+    public function edit($id)
     {
-        return [
+        try {
+            $book = Book::findOrFail($id);
+            return view('book.edit', compact('book'));
+        } catch (\Exception $exception) {
+            return redirect()->route('book.index')
+                ->with('error', 'book is not found');
+        }
+    }
+
+
+    public function update(Request $request, $id)
+    {
+
+        try {
+
+            $book = Book::findOrFail($id);
+        } catch (ModelNotFoundException $exception) {
+            return redirect()->route('book.index')
+                ->with('error', 'book is not found');
+        }
+        $request->validate($this->rules($book->id), $this->messages());
+        if ($request->hasFile('book_image')) {
+            if (File::exists(public_path($book->image))) {
+                File::delete(public_path($book->image));
+            }
+
+            $book->image = parent::uploadImage($request->file('image'));
+        }
+        $book->fill($request->all());
+        $book->update();
+        return redirect()->route('book.index')
+            ->with('success', 'book ' . $book->title . ' has been updated successfully');
+    }
+
+    /**
+     *
+     * validation rules
+     *
+     * @return array
+     */
+    private
+    function rules($id = null)
+    {
+        $rules = [
             'title' => 'required',
-            'writer' => 'required',
             'author' => 'required',
+            'writer' => 'required',
             'publisher' => 'required',
-            'publish_time' => 'required',
-            'isbn' => 'required|unique:books,isbn',
-            'book_image' => 'required|mimes:jpeg,png,bmp,jpg'
+            'publish_date' => 'required',
         ];
+        if ($id) {
+            $rules['isbn'] = 'required|unique:books,isbn,' . $id;
+        } else {
+            $rules['isbn'] = 'required|unique:books,isbn';
+            $rules['book_image'] = 'required|mimes:jpeg,bmp,png,jpg';
+        }
+        return $rules;
     }
 
-    private function messages()
+    /**
+     *
+     * validation messages
+     *
+     * @return array
+     */
+    private
+    function messages()
     {
         return [
-            'title.required' => 'Title is required',
-            'writer.required' => 'writer is required',
+            'title.required' => 'title is required',
             'author.required' => 'author is required',
             'publisher.required' => 'publisher is required',
-            'publish_time.required' => 'publish_date is required',
+            'writer.required' => 'writer is required',
+            'publish_date.required' => 'publish date is required',
             'isbn.required' => 'isbn is required',
-            'isbn.unique' => 'isbn key is duplicated',
+            'isbn.unique' => 'isbn should be unique',
             'book_image.required' => 'book image is required',
-            'book_image.mimes' => 'Invalid image',
+            'book_image.mimes' => 'invalid image',
         ];
     }
+
+
 }
