@@ -14,6 +14,41 @@
         <div class="col-md-12">
             <div class="panel panel-success">
                 <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-search"></i>Search</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form action="{{route('book.index')}}" method="GET">
+                                <div class="col-sm-4 form-group">
+                                    <label for="title">Title</label>
+                                    <input type="text" name="title" class="form-control"
+                                           value="{{app('request')->get('title')}}">
+                                </div>
+                                <div class="form-group col-sm-4">
+                                    <label for="author">Author</label>
+                                    <input type="text" name="author" class="form-control"
+                                           value="{{app('request')->get('author')}}">
+                                </div>
+                                <div class="form-group col-sm-4">
+                                    <label for="isbn">ISBN</label>
+                                    <input type="text" name="isbn" class="form-control"
+                                           value="{{app('request')->get('isbn')}}">
+                                </div>
+                                <div class="form-action col-sm-12 text-right">
+                                    <input type="submit" value="Search" class="btn btn-primary">
+                                    <a class="btn btn-default" href="{{route('book.index')}}">Cancel</a>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="panel panel-success">
+                <div class="panel-heading">
                     <h3 class="panel-title"><i class="fa fa-book"></i>Books</h3>
                 </div>
                 <div class="panel-body">

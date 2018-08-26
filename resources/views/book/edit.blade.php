@@ -3,7 +3,7 @@
 @section('body')
     <div class="row">
         <form action="{{route('book.update',['id' => $book->id])}}" method="POST" enctype="multipart/form-data">
-            @method('PUT')
+          X
             @csrf
             <div class="form-group " style="text-align: center">
                 <div class="fileinput fileinput-new" data-provides="fileinput">

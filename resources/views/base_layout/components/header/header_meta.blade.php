@@ -31,6 +31,15 @@
       type="text/css"
       id="style_color"/>
 <link href="{{asset('/control/assets/layouts/layout/css/custom.min.css')}}" rel="stylesheet" type="text/css"/>
+
+
+
+
+
+
+<!-- END GLOBAL MANDATORY STYLES -->
+<link href="{{asset('/control/assets/global/plugins/bootstrap-sweetalert/sweetalert.css')}}" rel="stylesheet"
+      type="text/css"/>
 <!-- END THEME LAYOUT STYLES -->
 <link href="{{asset('/control/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css')}}" rel="stylesheet"
       type="text/css"/>

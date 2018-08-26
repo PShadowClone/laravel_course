@@ -373,6 +373,25 @@
                         </li>
                     </ul>
                 </li>
+                <li class="dropdown dropdown-user">
+                    <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
+                       data-close-others="true">
+                        <img alt="" class="img-circle" src="../assets/layouts/layout/img/avatar3_small.jpg"/>
+                        <span class="username username-hide-on-mobile"> @lang('lang.language') : {{\Illuminate\Support\Facades\App::getLocale()}} </span>
+                        <i class="fa fa-angle-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-default">
+                        <li>
+                            <a href="{{route('language.change',['lang' => 'ar'])}}">
+                                <i class="icon-user"></i> Arabic </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="{{route('language.change',['lang' => 'en'])}}">
+                                <i class="icon-calendar"></i> English </a>
+                        </li>
+                    </ul>
+                </li>
                 <!-- END USER LOGIN DROPDOWN -->
                 <!-- BEGIN QUICK SIDEBAR TOGGLER -->
                 <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->

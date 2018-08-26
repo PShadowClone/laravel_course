@@ -15,9 +15,17 @@ class BookController extends Controller
 {
 
 
-    public function index()
+    public function index(Request $request)
     {
-        $books = Book::paginate(BOOK_PAGINATION);
+//        $books = Book::paginate(BOOK_PAGINATION);
+        $books = Book::where([]);
+        if ($request->has('title'))
+            $books = $books->where('title', 'like', '%' . $request->input('title') . '%');
+        if ($request->has('author'))
+            $books = $books->where('author', 'like', '%' . $request->input('author') . '%');
+        if ($request->has('isbn'))
+            $books = $books->where('isbn', 'like', '%' . $request->input('isbn') . '%');
+        $books = $books->paginate(BOOK_PAGINATION);
         return view('book.index', compact('books'));
     }
 
@@ -103,7 +111,7 @@ class BookController extends Controller
                 File::delete(public_path($book->image));
             }
 
-            $book->image = parent::uploadImage($request->file('image'));
+            $book->image = parent::uploadImage($request->file('book_image'));
         }
         $book->fill($request->all());
         $book->update();
