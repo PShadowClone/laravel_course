@@ -19,11 +19,9 @@ class CreateBook extends Migration
             $table->string('author');
             $table->string('writer');
             $table->string('publisher');
-            $table->string('isbn',100)->unique();
-            $table->date('publish_date');
+            $table->timestamp('publish_time');
+            $table->string('isbn', 100)->unique();
             $table->timestamps();
-
-
         });
     }
 

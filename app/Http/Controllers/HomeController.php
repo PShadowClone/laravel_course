@@ -47,7 +47,6 @@ class HomeController extends Controller
      */
     public function show($id)
     {
-        //
     }
 
     /**
@@ -85,57 +84,18 @@ class HomeController extends Controller
     }
 
 
-    /**
-     *
-     * summation numbers
-     *
-     * @param $firstNumber
-     * @param $secondNumber
-     * @return mixed
-     */
-    public function sum($firstNumber, $secondNumber)
-    {
-        return view('welcome');
-    }
-
-
-    /**
-     *
-     * show Hi view
-     *
-     */
-    public function showHi($name)
-    {
-        $phone = '<h1>283749283</h1>';
-        $data['name'] = $name;
-        $data['phone'] = $phone;
-        return view('profile', $data);
-
-    }
-
-    /**
-     *
-     * check number according to 10
-     *
-     * @param $number
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function checkNumber($number)
-    {
-        return view('checkNumber', compact('number'));
-    }
-
-    public function storeBook()
+    public function addBook()
     {
         $book = new Book();
-        $book->title = 'hello world';
-        $book->writer = 'ali';
+        $book->title = 'shit';
         $book->author = 'ali';
-        $book->publisher = 'ahamd';
-        $book->isbn = 'skjdhf';
-        $book->publish_date = Carbon::now();
+        $book->writer = 'mohammad';
+        $book->isbn = 'dskjk9';
+        $book->publisher = 'fathy';
+        $book->publish_time = Carbon::now();
         $result = $book->save();
-        echo $result;
+        dd($result);
+
     }
 
 }

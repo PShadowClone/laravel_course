@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'language' => 'language'
+    'search' => 'Search'
 ];
