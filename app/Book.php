@@ -3,41 +3,21 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Exception;
 
 class Book extends Model
 {
-    public $table = 'books';
-    public $primaryKey = 'id';
-    public $fillable = ['title', 'writer', 'publisher', 'author', 'isbn', 'publish_date', 'image'];
+    protected $table = 'books';
+    protected $primaryKey = 'id';
+    protected $fillable = ['title', 'author', 'writer', 'publisher', 'publish_date', 'isbn', 'image'];
     protected $dates = ['created_at', 'updated_at'];
-
-    /**
-     *
-     * return the custom view of publish date
-     *
-     * @return string
-     */
-    public function getPublishDate()
-    {
-        try {
-            return explode(' ', $this->publish_time)[0];
-        } catch (Exception $exception) {
-            return 'Unknown';
-        }
-    }
+    const CREATED_AT = 'created_at';
+    const UPDATED_AT = 'updated_at';
 
 
-    /**
-     *
-     * get Image
-     *
-     * @return string
-     */
     public function getImage()
     {
-        if ($this->image)
-            return asset($this->image);
-        return asset('empty_image.png');
+        if (!$this->image)
+            return asset('no_image.png');
+        return asset($this->image);
     }
 }

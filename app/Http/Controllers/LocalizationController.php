@@ -3,22 +3,24 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Session;
 
-class LanguageController extends Controller
+class LocalizationController extends Controller
 {
+
 
     /**
      *
-     *
-     * change language
+     * change system language according to the chosen one
      *
      * @param string $lang
      * @return \Illuminate\Http\RedirectResponse
      */
     public function change($lang = 'en')
     {
-        Session::put('lang', $lang);
+        Session::put('locale', $lang);
         return redirect()->back();
     }
 }

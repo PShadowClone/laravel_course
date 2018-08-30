@@ -3,11 +3,12 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
-
 class LanguageMiddleware
 {
+
+
+
     /**
      * Handle an incoming request.
      *
@@ -17,10 +18,8 @@ class LanguageMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if (Session::has('lang')) {
-            App::setLocale(Session::get('lang'));
-            app()->setLocale(Session::get('lang'));
-        }
+        if (Session::has('locale'))
+            app()->setLocale(Session::get('locale'));
         return $next($request);
     }
 }
