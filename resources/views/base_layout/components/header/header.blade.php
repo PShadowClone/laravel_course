@@ -23,7 +23,7 @@
                 <!-- DOC: Apply "dropdown-dark" class after "dropdown-extended" to change the dropdown styte -->
                 <!-- DOC: Apply "dropdown-hoverable" class after below "dropdown" and remove data-toggle="dropdown" data-hover="dropdown" data-close-others="true" attributes to enable hover dropdown mode -->
                 <!-- DOC: Remove "dropdown-hoverable" and add data-toggle="dropdown" data-hover="dropdown" data-close-others="true" attributes to the below A element with dropdown-toggle class -->
-                <li class="dropdown dropdown-extended dropdown-notification" id="header_notification_bar">
+                <li class="dropdown dropdown-extended dropdown-notification hidden" id="header_notification_bar">
                     <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
                        data-close-others="true">
                         <i class="icon-bell"></i>
@@ -126,7 +126,7 @@
                 <!-- END NOTIFICATION DROPDOWN -->
                 <!-- BEGIN INBOX DROPDOWN -->
                 <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
-                <li class="dropdown dropdown-extended dropdown-inbox" id="header_inbox_bar">
+                <li class="dropdown dropdown-extended dropdown-inbox hidden" id="header_inbox_bar">
                     <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
                        data-close-others="true">
                         <i class="icon-envelope-open"></i>
@@ -208,7 +208,7 @@
                 <!-- END INBOX DROPDOWN -->
                 <!-- BEGIN TODO DROPDOWN -->
                 <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
-                <li class="dropdown dropdown-extended dropdown-tasks" id="header_task_bar">
+                <li class="dropdown dropdown-extended dropdown-tasks hidden" id="header_task_bar">
                     <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
                        data-close-others="true">
                         <i class="icon-calendar"></i>
@@ -377,18 +377,27 @@
                     <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
                        data-close-others="true">
                         <img alt="" class="img-circle" src="../assets/layouts/layout/img/avatar3_small.jpg"/>
-                        <span class="username username-hide-on-mobile"> Language : {{app()->getLocale()}} </span>
+                        <span class="username username-hide-on-mobile">
+                            @if(app()->getLocale() == 'ar')
+                                <img alt="" src="control/assets/global/img/flags/eg.png">
+                            @else
+                                <img alt="" src="control/assets/global/img/flags/us.png">
+                            @endif
+                            @lang('lang.lang_'.app()->getLocale())
+                        </span>
                         <i class="fa fa-angle-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-default">
                         <li>
                             <a href="{{route('language.change',['lang' => 'ar'])}}">
-                                <i class="icon-user"></i> Arabic </a>
+                                <img alt="" src="control/assets/global/img/flags/eg.png">
+                                @lang('lang.lang_ar') </a>
                         </li>
                         <li class="divider"></li>
                         <li>
                             <a href="{{route('language.change',['lang' => 'en'])}}">
-                                <i class="icon-calendar"></i> English </a>
+                                <img alt="" src="control/assets/global/img/flags/us.png">
+                                @lang('lang.lang_en') </a>
                         </li>
                     </ul>
                 </li>

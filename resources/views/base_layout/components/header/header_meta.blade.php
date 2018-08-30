@@ -15,10 +15,9 @@
 @if(app()->getLocale() == 'ar')
     <link href="{{asset('/control/assets/global/plugins/bootstrap/css/bootstrap-rtl.min.css')}}" rel="stylesheet"
           type="text/css"/>
-    <link href="{{asset('control/assets/global/plugins/bootstrap-switch/css/bootstrap-switch-rtl.min.css')}}"
+    <link href="{{asset('/control/assets/global/plugins/bootstrap-switch/css/bootstrap-switch-rtl.min.css')}}"
           rel="stylesheet"
           type="text/css"/>
-    <!-- END GLOBAL MANDATORY STYLES -->
     <!-- BEGIN THEME GLOBAL STYLES -->
     <link href="{{asset('/control/assets/global/css/components-rtl.min.css')}}" rel="stylesheet" id="style_components"
           type="text/css"/>
@@ -30,13 +29,13 @@
           type="text/css"
           id="style_color"/>
     <link href="{{asset('/control/assets/layouts/layout/css/custom-rtl.min.css')}}" rel="stylesheet" type="text/css"/>
+
 @else
     <link href="{{asset('/control/assets/global/plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet"
           type="text/css"/>
-    <link href="{{asset('control/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css')}}"
+    <link href="{{asset('/control/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css')}}"
           rel="stylesheet"
           type="text/css"/>
-    <!-- END GLOBAL MANDATORY STYLES -->
     <!-- BEGIN THEME GLOBAL STYLES -->
     <link href="{{asset('/control/assets/global/css/components.min.css')}}" rel="stylesheet" id="style_components"
           type="text/css"/>
@@ -48,16 +47,45 @@
           type="text/css"
           id="style_color"/>
     <link href="{{asset('/control/assets/layouts/layout/css/custom.min.css')}}" rel="stylesheet" type="text/css"/>
+
 @endif
 
+
+<!-- END GLOBAL MANDATORY STYLES -->
+<link href="{{asset('/control/assets/global/plugins/bootstrap-sweetalert/sweetalert.css')}}" rel="stylesheet"
+      type="text/css"/>
 <!-- END THEME LAYOUT STYLES -->
 <link href="{{asset('/control/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css')}}" rel="stylesheet"
       type="text/css"/>
-<link href="{{asset('/control/assets/global/plugins/bootstrap-sweetalert/sweetalert.css')}}" rel="stylesheet"
-      type="text/css"/>
+
 <link rel="shortcut icon" href="favicon.ico"/>
+
 <style>
-    .required, .error {
+    .error {
+        color: red;
+        margin-top: 10px !important;
+    }
+
+    .required {
         color: red;
     }
+
+    .page-bar {
+        margin: -22px -14px 22px !important;
+    }
+
 </style>
+
+@if(app()->getLocale() == 'ar')
+    <style>
+        .fa-search, .fa-plus, .fa-book, .fa-edit, .fa-list {
+            margin-left: 5px;
+        }
+    </style>
+@else
+    <style>
+        .fa-search, .fa-plus, .fa-book, .fa-edit, .fa-list {
+            margin-right: 5px;
+        }
+    </style>
+@endif

@@ -23,7 +23,10 @@ class BookSeeder extends Seeder
                 'publisher' => $faker->firstName,
                 'publish_date' => $faker->date,
                 'isbn' => $faker->isbn10,
-                'image' => $image
+                'image' => $image,
+                'library_id' => $faker->numberBetween(1, 49),
+                'category_id' => $faker->numberBetween(1, 49),
+                'lang' => $faker->randomElement(['ar', 'en']),
             ]);
         }
 
