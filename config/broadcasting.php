@@ -53,6 +53,10 @@ return [
         'null' => [
             'driver' => 'null',
         ],
+        'firebase' => [
+            'secret_key' => env('FIREBASE_KEY'),
+            'url' => env('FIREBASE_URL')
+        ]
 
     ],
 

@@ -67,13 +67,13 @@
             </a>
             <ul class="sub-menu" style="{{session()->get('nav') == 2 ? 'display:block' : ''}}">
                 <li class="nav-item start ">
-                    <a href="{{route('book.index')}}" class="nav-link ">
+                    <a href="{{route('category.index')}}" class="nav-link ">
                         <i class="fa fa-list"></i>
                         <span class="title">@lang('lang.show')</span>
                     </a>
                 </li>
                 <li class="nav-item start">
-                    <a href="{{route('book.create')}}" class="nav-link ">
+                    <a href="{{route('category.create')}}" class="nav-link ">
                         <i class="fa fa-plus"></i>
                         <span class="title">@lang('lang.add')</span>
                     </a>

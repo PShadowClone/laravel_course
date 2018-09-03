@@ -7,12 +7,22 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     public $id = 1;
+
+
+    public function userLogout()
+    {
+        Auth::logout();
+        Session::flush();
+        return redirect()->route('login');
+    }
 
     public function uploadImage($image, $dir = 'image')
     {

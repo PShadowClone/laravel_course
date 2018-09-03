@@ -379,9 +379,9 @@
                         <img alt="" class="img-circle" src="../assets/layouts/layout/img/avatar3_small.jpg"/>
                         <span class="username username-hide-on-mobile">
                             @if(app()->getLocale() == 'ar')
-                                <img alt="" src="control/assets/global/img/flags/eg.png">
+                                <img alt="" src="{{asset('control/assets/global/img/flags/eg.png')}}">
                             @else
-                                <img alt="" src="control/assets/global/img/flags/us.png">
+                                <img alt="" src="{{asset('control/assets/global/img/flags/us.png')}}">
                             @endif
                             @lang('lang.lang_'.app()->getLocale())
                         </span>
@@ -390,13 +390,13 @@
                     <ul class="dropdown-menu dropdown-menu-default">
                         <li>
                             <a href="{{route('language.change',['lang' => 'ar'])}}">
-                                <img alt="" src="control/assets/global/img/flags/eg.png">
+                                <img alt="" src="{{asset('control/assets/global/img/flags/eg.png')}}">
                                 @lang('lang.lang_ar') </a>
                         </li>
                         <li class="divider"></li>
                         <li>
                             <a href="{{route('language.change',['lang' => 'en'])}}">
-                                <img alt="" src="control/assets/global/img/flags/us.png">
+                                <img alt="" src="{{asset('control/assets/global/img/flags/us.png')}}">
                                 @lang('lang.lang_en') </a>
                         </li>
                     </ul>
@@ -405,7 +405,7 @@
                 <!-- BEGIN QUICK SIDEBAR TOGGLER -->
                 <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                 <li class="dropdown dropdown-quick-sidebar-toggler">
-                    <a href="javascript:;" class="dropdown-toggle">
+                    <a href="{{route('logout.custom')}}" class="dropdown-toggle">
                         <i class="icon-logout"></i>
                     </a>
                 </li>

@@ -108,6 +108,8 @@ return [
 
     'cipher' => 'AES-256-CBC',
 
+    'useAcceptLanguageHeader' => false,
+    'hideDefaultLocaleInURL' => true,
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers
