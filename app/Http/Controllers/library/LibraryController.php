@@ -23,6 +23,10 @@ class LibraryController extends Controller
         return view('library.create');
     }
 
+    public function home(){
+        return view('home');
+    }
+
     public function sendEmail()
     {
 

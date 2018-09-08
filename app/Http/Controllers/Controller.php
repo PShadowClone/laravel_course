@@ -9,6 +9,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\MessageBag;
 
 class Controller extends BaseController
 {
@@ -31,6 +32,32 @@ class Controller extends BaseController
         $direction = public_path($dir . '/');
         $uploadedImage->move($direction, $imageName);
         return 'image/' . $imageName;
+    }
+
+
+    public function success($data, $status = 200)
+    {
+        return response()->json([
+            'status' => 'success',
+            'data' => $data,
+            'errors' => 0
+        ], $status)
+            ->header('Content-type', 'application/json');
+    }
+
+    public function error($data, $status = 500)
+    {
+
+        if ($data instanceof MessageBag)
+            $data = $data->first();
+        $response = response()->json([
+            'status' => 'error',
+            'data' => $data,
+            'errors' => 1
+        ], $status)
+            ->header('Content-type', 'application/json');
+
+        return $response;
     }
 
 }

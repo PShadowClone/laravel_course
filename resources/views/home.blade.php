@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    You are logged in! {{\Illuminate\Support\Facades\Auth::guard("library")->check() ? 'library' : 'Admin'}}
                 </div>
             </div>
         </div>

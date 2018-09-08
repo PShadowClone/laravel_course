@@ -24,7 +24,9 @@ class LibrarySeeder extends Seeder
                 'lat' => $faker->latitude,
                 'address' => $faker->address,
                 'lang' => $faker->randomElement(['ar', 'en']),
-                'image' => $image
+                'image' => $image,
+                'password' => \Illuminate\Support\Facades\Hash::make('123456')
+
             ]);
         }
     }

@@ -1,5 +1,4 @@
 <?php
-
 return [
 
     /*
@@ -40,11 +39,15 @@ return [
             'driver' => 'session',
             'provider' => 'admins',
         ],
-
         'api' => [
-            'driver' => 'token',
+            'driver' => 'passport',
             'provider' => 'users',
+
         ],
+        'library' => [
+            'driver' => 'session',
+            'provider' => 'libraries'
+        ]
     ],
 
     /*
@@ -72,6 +75,10 @@ return [
         'admins' => [
             'driver' => 'eloquent',
             'model' => App\Admin::class
+        ],
+        'libraries' => [
+            'driver' => 'eloquent',
+            'model' => \App\Library::class
         ]
 
         // 'users' => [
