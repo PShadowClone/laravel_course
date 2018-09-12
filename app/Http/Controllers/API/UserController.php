@@ -15,7 +15,7 @@ class UserController extends Controller
 
     public function index()
     {
-        $users = User::all();
+        $users = User::paginate(10);
         return parent::success($users);
     }
 
@@ -87,10 +87,10 @@ class UserController extends Controller
     }
 
 
-    public function show($id = null)
+    public function show(Request $request, $id = null)
     {
         try {
-            $user = User::all();
+            $user = User::paginate($request->input('per_page', 10));
             if ($id) {
                 $user = User::findOrFail($id);
             }

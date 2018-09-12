@@ -162,6 +162,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        Saadj55\LaravelPubg\Providers\LaravelPubgServiceProvider::class
+
     ],
 
     /*

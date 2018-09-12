@@ -13,6 +13,12 @@
                             {{ session('status') }}
                         </div>
                     @endif
+                    @auth('library')
+                        Library
+                        @else
+                        Admin
+
+                        @endauth
 
                     You are logged in! {{\Illuminate\Support\Facades\Auth::guard("library")->check() ? 'library' : 'Admin'}}
                 </div>

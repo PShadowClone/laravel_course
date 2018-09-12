@@ -11,6 +11,7 @@
 @section('body')
     <div class="row">
 
+
         <div class="col-md-12">
             <div class="panel panel-success">
                 <div class="panel-heading">
@@ -21,7 +22,7 @@
                         <div class="col-md-12">
                             <form action="{{route('book.index')}}" method="GET">
                                 <div class="col-sm-4 form-group">
-                                    <label for="title">Title</label>
+                                    <label for="title">{{__('lang.title')}}</label>
                                     <input type="text" name="title" class="form-control"
                                            value="{{app('request')->get('title')}}">
                                 </div>

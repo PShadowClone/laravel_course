@@ -20,7 +20,10 @@ class Controller extends BaseController
 
     public function userLogout()
     {
-        Auth::logout();
+        if (Auth::check())
+            Auth::logout();
+        elseif (Auth::guard('library')->check())
+            Auth::guard('library')->logout();
         Session::flush();
         return redirect()->route('login');
     }
@@ -31,7 +34,7 @@ class Controller extends BaseController
         $imageName = time() . '.' . $uploadedImage->getClientOriginalExtension();
         $direction = public_path($dir . '/');
         $uploadedImage->move($direction, $imageName);
-        return 'image/' . $imageName;
+        return $dir . '/' . $imageName;
     }
 
 

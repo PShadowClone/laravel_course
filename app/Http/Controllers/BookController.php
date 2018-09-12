@@ -162,6 +162,7 @@ class BookController extends Controller
         ];
         if ($id) {
             $rules['isbn'] = 'required|unique:books,isbn,' . $id;
+            $rules['book_image'] = 'mimes:jpeg,bmp,png,jpg';
         } else {
             $rules['isbn'] = 'required|unique:books,isbn';
             $rules['book_image'] = 'required|mimes:jpeg,bmp,png,jpg';

@@ -26,7 +26,7 @@ return [
     'no' => 'No',
     'edit' => 'Edit',
     'show' => 'Show',
-
+    'title' => 'Title',
     /**
      *
      * languages
